@@ -1,0 +1,64 @@
+{
+    "private": true,
+    "scripts": {
+        "pre": "prettier --write src/**/*.ts src/**/**/*.ts",
+        "jest": "jest",
+        "test": "run-s test:*",
+        "test:prettier": "run-s pre",
+        "test:jest": "run-s jest",
+        "dev": "run-s dev:*",
+        "dev:prettier": "run-s pre",
+        "dev:jest": "run-s jest",
+        "dev:parcel": "parcel src/index.html",
+        "build": "run-s build:*",
+        "build:prettier": "run-s pre",
+        "build:jest": "run-s jest",
+        "build:build": "parcel build src/index.html",
+        "ver": "run-s ver:*",
+        "ver:prettier": "prettier --version",
+        "ver:jest": "jest --version",
+        "ver:parcel": "parcel --version"
+    },
+    "devDependencies": {
+        "@types/jest": "^29.2.5",
+        "@types/p5": "^1.4.0",
+        "jest": "^29.2.1",
+        "npm-run-all": "^4.1.5",
+        "p5": "^1.5.0",
+        "parcel-bundler": "^1.8.1",
+        "prettier": "^2.3.0",
+        "ts-jest": "^29.0.3"
+    },
+    "dependencies": {
+        "@types/p5": "^1.4.0",
+        "p5": "^1.5.0"
+    },
+    "name": "tsp5-ninjutsu",
+    "description": "Ninja in html5 game",
+    "version": "1.0.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tecokimura/tsp5-LALA_avenu.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/tecokimura/tsp5-LALA_avenu/issues"
+    },
+    "homepage": "https://github.com/tecokimura/tsp5-LALA_avenu#readme",
+    "jest": {
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js"
+        ],
+        "transform": {
+            "^.+\\.(ts|tsx)$": "ts-jest"
+        },
+        "testMatch": [
+            "**/__tests__/**/*.[jt]s?(x)",
+            "**/__tests__/**/**/*.[jt]s?(x)"
+        ]
+    }
+}
