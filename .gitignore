@@ -4,8 +4,4 @@
 dist
 node_modules
 .vscode
-./res/bg/
-./res/effect/
-./res/enemy/
-./res/font/
-./res/player/
+res
