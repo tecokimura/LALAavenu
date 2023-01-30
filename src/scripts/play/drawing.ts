@@ -1,5 +1,5 @@
 import p5 from "p5"
-import { Images } from "../classes/Images"
+import { Images } from "classes/Images"
 
 export class Drawing {
     p5: p5 // 引数でクラスに持つ必要ないかも
