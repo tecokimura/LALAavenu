@@ -1,7 +1,6 @@
 import p5 from "p5"
 import { LIST_PNG_PATHNAME } from "../configs/png"
 
-const downloadUrl = new URL("/res/ufo.png", import.meta.url)
 // 配列管理を調べる
 export class Images {
     p5: p5

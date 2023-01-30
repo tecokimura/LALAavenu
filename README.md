@@ -3,5 +3,5 @@
 
 ## How to change branch
 
-% git fetch origin $BRANCH_NAME
-% git checkout $BRANCH_NAME
+% git fetch origin $BRANCH_NAME  
+% git checkout $BRANCH_NAME  

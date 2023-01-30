@@ -1,17 +1,26 @@
 import p5 from "p5"
+import { Process } from "./play/process"
+import { Drawing } from "./play/drawing"
 import { Images } from "./classes/Images"
 
-const sketch = (p5: p5) => {
+// https://p5js.org/reference/#/p5/p5
+const s = (p5: p5) => {
+    let process: Process
+    let drawing: Drawing
     let images: Images
 
     // Init
     p5.preload = () => {
+        process = new Process(p5)
         images = new Images(p5)
+        drawing = new Drawing(p5, images)
     }
 
     // Loading
     p5.setup = () => {
         images.loadAll()
+
+        process.do()
     }
 
     //
@@ -26,6 +35,8 @@ const sketch = (p5: p5) => {
         p5.rect(0, 0, 240, 240)
 
         testImage(p5)
+
+        drawing.do()
     }
 
     function testImage(p5: p5) {
@@ -34,4 +45,5 @@ const sketch = (p5: p5) => {
     }
 }
 
-new p5(sketch)
+// https://p5js.org/reference/#/p5/p5
+new p5(s)
