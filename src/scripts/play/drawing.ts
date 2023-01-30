@@ -1,9 +1,10 @@
 import p5 from "p5"
-import { Images } from "classes/Images"
+import { Images } from "scripts/classes/Images"
 
 export class Drawing {
     p5: p5 // 引数でクラスに持つ必要ないかも
-    count: number = 0
+    canDo: boolean = true; // 動き出してよいか？
+    counter: number = 0
     images: Images
 
     constructor(p: p5, images: Images) {
@@ -12,13 +13,15 @@ export class Drawing {
     }
 
     init() {
-        this.count = 0
+        this.counter = 0
     }
 
     do() {
-        this.count++
+        if( this.canDo ) {
+            this.counter++
 
-        this.p5.image(this.images.get(27), this.count % 200, 20)
+            this.p5.image(this.images.get(27), this.counter % 200, 20)
+        }
     }
 
     // No need to write this because working p5

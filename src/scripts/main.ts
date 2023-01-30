@@ -1,7 +1,7 @@
 import p5 from "p5"
-import { Process } from "play/process"
-import { Drawing } from "play/drawing"
-import { Images } from "classes/Images"
+import { Process } from "scripts/play/process"
+import { Drawing } from "scripts/play/drawing"
+import { Images } from "scripts/classes/Images"
 
 // https://p5js.org/reference/#/p5/p5
 const s = (p5: p5) => {

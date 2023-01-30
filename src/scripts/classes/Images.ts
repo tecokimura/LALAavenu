@@ -1,5 +1,5 @@
 import p5 from "p5"
-import { LIST_PNG_PATHNAME } from "configs/png"
+import { LIST_PNG_PATHNAME } from "scripts/configs/png"
 
 // 配列管理を調べる
 export class Images {
