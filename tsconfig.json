@@ -9,14 +9,17 @@
     "rootDir": "./src",
     "strict": true,
     "moduleResolution": "node",
-    "baseUrl": "src/",
+    "baseUrl": "./src",
+    "paths": {
+      "/src/*": ["/src/*"]
+    },
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/**/**/*"],
   "exclude": ["dist", "node_modules"],
   "compileOnSave": false
 }
