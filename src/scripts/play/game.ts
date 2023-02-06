@@ -1,100 +1,62 @@
 import p5 from "p5"
 import { Images } from "~/src/scripts/classes/images"
 import { Scene } from "~/src/scripts/classes/scene"
-import { Keycode } from "~/src/scripts/const/keycode"
+import { Keyinput } from "~/src/scripts/classes/keyinput"
+import { Process } from "~/src/scripts/play/process"
+import { Drawing } from "~/src/scripts/play/drawing"
 
 export class Game {
-    p5: p5
-    private images: Images
-    private scene: Scene
+    private p5: p5
+
+    private _processing: Process
+    private _drawing: Drawing
+    private _keyinput: Keyinput
+    private _images: Images
+    private _scene: Scene
+
     private counter: number = 0
 
-    keycodeHistory: Array<number> = new Array(5)
-    pressKeyBuffer: number = 0 // イベントで取得した最新のキー
-    holdDownKey: number = 0 // 押しっぱなしのキー
-
-    constructor(p: p5, img: Images) {
+    constructor(p: p5) {
         this.p5 = p
-        this.images = img
-        this.scene = new Scene()
-        this.pressKeyBuffer = Keycode.NONE
-        for (let i = 0; i < this.keycodeHistory.length; i++) {
-            this.keycodeHistory[i] = Keycode.NONE
-        }
+
+        this._processing = new Process(this)
+        this._drawing = new Drawing(this, this.p5)
+        this._images = new Images(this.p5)
+        this._scene = new Scene()
+        this._keyinput = new Keyinput()
         // 乱数の初期化
     }
 
-    // p5のkeyPressedから呼ばれる想定
-    keyPressed(p5KeyCode: number) {
-        this.pressKeyBuffer = p5KeyCode
+    setup(): void {
+        this._images.loadAll()
     }
 
-    // p5のkeyPressedから呼ばれる想定
-    keyReleased() {
-        this.pressKeyBuffer = Keycode.NONE
+    processing() {
+        this._processing.do()
     }
 
-    // キーが押されていないならfalse
-    // 調べるキーがANYならtrue
-    // 指定されたキーか調べる。
-    isPressKey(code: number = Keycode.ANY): boolean {
-        if (this.keycodeHistory[0] == Keycode.NONE) return false
-
-        if (code == Keycode.ANY) return true
-
-        // キーが指定されている場合は調べて更新する
-        return this.keycodeHistory[0] == code
+    drawing(): void {
+        this._drawing.do()
     }
 
-    // キーが今のフレームで押されたかを調べる
-    // 履歴の前が押していなくて今が押していればtrue
-    isPressKeyNow(): boolean {
-        return (
-            this.keycodeHistory[0] != Keycode.NONE &&
-            this.keycodeHistory[1] == Keycode.NONE
+    image(id: number): p5.Image {
+        return this._images.get(id)
+    }
+
+    keyinput(): Keyinput {
+        // 今はkeyのみ
+        return this._keyinput
+    }
+
+    updateKeyinputHistory() {
+        this._keyinput.rotateHistory()
+        this._keyinput.updateKeycodeHistory(
+            this.p5.keyIsPressed,
+            this.p5.keyCode
         )
     }
 
-    // 今キーを離したかを取得する
-    isReleaseKeyNow(): boolean {
-        return (
-            this.keycodeHistory[0] == Keycode.NONE &&
-            this.keycodeHistory[1] != Keycode.NONE
-        )
-    }
-
-    // 最後に押された処理するキーを調べる
-    isLastPressKey(code: Keycode): boolean {
-        return this.keycodeHistory[0] == code
-    }
-
-    // processで使用する
-    processUpdateKeycode(p5: p5) {
-        this.rotateKeycodeHistory()
-        this.updateKeycodeHistory(p5)
-    }
-
-    // キー履歴をローテーションする
-    rotateKeycodeHistory() {
-        // キーコード履歴 を更新する
-        // 新しい [MIN] <  [MAX] 古い
-        for (let i = 0; i < this.keycodeHistory.length - 1; i++) {
-            this.keycodeHistory[i + 1] = this.keycodeHistory[i]
-        }
-    }
-
-    // 処理するキー入力を更新する
-    updateKeycodeHistory(p5: p5) {
-        // p5で押しっぱなしと判定されたら上書きする
-        if (p5.keyIsPressed) {
-            this.pressKeyBuffer = p5.keyCode
-        }
-
-        this.keycodeHistory[0] = this.pressKeyBuffer
-        this.pressKeyBuffer = Keycode.NONE
-    }
-
-    getImages(): Images {
-        return this.images
+    scene(): Scene {
+        return this._scene
     }
 }

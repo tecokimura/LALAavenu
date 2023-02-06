@@ -7,7 +7,14 @@ export class Graphics {
         this.p5 = p
     }
 
-    setColor(r: number, g: number, b: number) {}
-    fillRect() {}
+    setColor(r: number, g: number, b: number) {
+        this.p5.fill(r, g, b)
+    }
+    fillRect(x: number, y: number, w: number, h: number) {
+        this.p5.rect(x, y, w, h)
+    }
     drawRect() {}
+    drawImage(image: p5.Image, x: number, y: number): void {
+        this.p5.image(image, x, y)
+    }
 }
