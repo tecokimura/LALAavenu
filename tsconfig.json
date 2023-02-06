@@ -6,17 +6,20 @@
     "jsx": "react",
     "sourceMap": true,
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./",
     "strict": true,
     "moduleResolution": "node",
-    "baseUrl": "src",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"]
+    },
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/**/**/*"],
   "exclude": ["dist", "node_modules"],
   "compileOnSave": false
 }

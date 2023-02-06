@@ -1,13 +1,15 @@
 {
     "scripts": {
-        "pre": "prettier --write src/scripts/*.ts src/scripts/**/*.ts tests/*.ts",
+        "pre": "prettier --write src/**/*.ts src/**/**/*.ts",
         "jest": "jest",
         "test": "run-s test:*",
         "test:prettier": "run-s pre",
         "test:jest": "run-s jest",
         "dev": "run-s dev:*",
         "dev:test": "run-s test:*",
-        "dev:run": "parcel src/index.html --no-cache",
+        "dev:run": "parcel src/index.html",
+        "run": "parcel src/index.html",
+        "build": "parcel build src/index.html",
         "ver": "run-s ver:*",
         "ver:prettier": "prettier --version",
         "ver:jest": "jest --version",
@@ -15,9 +17,7 @@
     },
     "devDependencies": {
         "@parcel/config-default": "^2.8.2",
-        "@parcel/resolver-glob": "^2.8.3",
         "@parcel/transformer-typescript-tsc": "^2.8.2",
-        "@parcel/validator-typescript": "^2.8.3",
         "@types/jest": "^29.2.5",
         "@types/p5": "^1.4.3",
         "jest": "^29.3.1",
@@ -29,5 +29,14 @@
     },
     "dependencies": {
         "parcel": "^2.8.3"
+    },
+    "jest": {
+        "verbose": true,
+        "transform": {
+            "\\.tsx?$": "ts-jest"
+        },
+        "moduleNameMapper": {
+            "~/src/(.+)$": "<rootDir>/src/$1"
+        }
     }
 }
