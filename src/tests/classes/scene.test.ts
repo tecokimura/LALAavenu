@@ -1,10 +1,5 @@
-test("test", () => {
-    expect(true).toBe(true)
-})
+import { Scene } from "~/src/scripts/classes/scene"
 
-// import { Scene } from "scripts/classes/scene"
-
-/*
 test("constructor", () => {
     const s = new Scene()
     expect(true).toEqual(s.isNone())
@@ -34,4 +29,3 @@ test("isXxx()", () => {
     s.changeGameover()
     expect(true).toEqual(s.isGameover())
 })
-*/

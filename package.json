@@ -9,6 +9,7 @@
         "dev:test": "run-s test:*",
         "dev:run": "parcel src/index.html",
         "run": "parcel src/index.html",
+        "build": "parcel build src/index.html",
         "ver": "run-s ver:*",
         "ver:prettier": "prettier --version",
         "ver:jest": "jest --version",
@@ -16,7 +17,6 @@
     },
     "devDependencies": {
         "@parcel/config-default": "^2.8.2",
-        "@parcel/resolver-glob": "^2.8.3",
         "@parcel/transformer-typescript-tsc": "^2.8.2",
         "@types/jest": "^29.2.5",
         "@types/p5": "^1.4.3",
@@ -36,7 +36,7 @@
             "\\.tsx?$": "ts-jest"
         },
         "moduleNameMapper": {
-            "^scripts/(.+)$": "<rootDir>/src/scripts/$1"
+            "~/src/(.+)$": "<rootDir>/src/$1"
         }
     }
 }

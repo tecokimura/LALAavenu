@@ -6,12 +6,12 @@
     "jsx": "react",
     "sourceMap": true,
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./",
     "strict": true,
     "moduleResolution": "node",
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "/src/*": ["/src/*"]
+      "~/*": ["./*"]
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,
