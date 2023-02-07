@@ -1,27 +1,28 @@
+import p5 from "p5"
 import { Game } from "~/src/scripts/play/game"
 import { Count } from "~/src/scripts/classes/count"
-import p5 from "p5"
 import { Graphics } from "~/src/scripts/classes/graphics"
+import { Lock } from "~/src/scripts/classes/lock"
 
 // Graphicsを継承してもいいかも
 export class Drawing {
-    g: Graphics
-    game: Game
-    time: Count
+    public readonly lock: Lock // 継承した方が良さそうだけど、デザインパターン探す
 
-    // Gameに移動した方が良さそう
-    canDo: boolean = true // 動き出してよいか？
+    private readonly g: Graphics
+    private readonly game: Game
+    private readonly time: Count
 
     constructor(g: Game, p: p5) {
         this.game = g
         this.g = new Graphics(p)
+        this.lock = new Lock()
         this.time = new Count()
     }
 
     init() {}
 
     do() {
-        if (this.canDo) {
+        if (this.lock.isUnlocked()) {
             this.g.setColor(0, 0, 0)
             this.g.fillRect(0, 0, 240, 240)
 
