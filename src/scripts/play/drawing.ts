@@ -23,12 +23,10 @@ export class Drawing {
 
     do() {
         if (this.lock.isUnlocked()) {
-            this.g.setColor(0, 0, 0)
-            this.g.fillRect(0, 0, 240, 240)
+            this.g.clearRect(0, 0, 0)
 
             if (this.game.scene().isNone()) {
-                this.g.setColor(100, 100, 100)
-                this.g.fillRect(0, 0, 240, 240)
+                this.g.clearRect(0, 0, 0)
 
                 this.g.drawImage(
                     this.game.image(27),
@@ -36,14 +34,23 @@ export class Drawing {
                     20
                 )
             } else if (this.game.scene().isLoading()) {
-                this.g.setColor(200, 200, 200)
-                this.g.fillRect(0, 0, 240, 240)
+                this.g.clearRect(120, 120, 120)
 
                 this.g.drawImage(
                     this.game.image(30),
                     this.time.count() % 100,
                     50
                 )
+            } else if (this.game.scene().isTitle()) {
+                this.g.clearRect(60, 60, 220)
+            } else if (this.game.scene().isOpening()) {
+                this.g.clearRect(60, 220, 60)
+            } else if (this.game.scene().isPlaying()) {
+                this.g.clearRect(60, 220, 220)
+            } else if (this.game.scene().isBombed()) {
+                this.g.clearRect(220, 60, 60)
+            } else if (this.game.scene().isGameover()) {
+                this.g.clearRect(20, 20, 20)
             }
 
             this.time.counting()
