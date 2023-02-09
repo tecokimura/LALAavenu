@@ -1,8 +1,15 @@
+import { Count } from "~/src/scripts/classes/count"
+
 export class Scene {
-    value: number
+    private readonly time: Count
+
+    private buffer: number
+    private value: number
 
     constructor() {
         this.value = Scene.NONE
+        this.buffer = Scene.NONE
+        this.time = new Count()
     }
 
     // 正確に連番である必要はない
@@ -36,25 +43,39 @@ export class Scene {
         return this.value == Scene.GAMEOVER
     }
 
+    // 処理の途中で状態が変わるとif分が複雑になるので処理の開始時点で更新されるように一度bufferに入れupdateSceneで更新する。
     changeNone() {
-        this.value = Scene.NONE
+        this.buffer = Scene.NONE
     }
     changeLoading() {
-        this.value = Scene.LOADING
+        this.buffer = Scene.LOADING
     }
     changeTitle() {
-        this.value = Scene.TITLE
+        this.buffer = Scene.TITLE
     }
     changeOpening() {
-        this.value = Scene.OPENING
+        this.buffer = Scene.OPENING
     }
     changePlaying() {
-        this.value = Scene.PLAYING
+        this.buffer = Scene.PLAYING
     }
     changeBombed() {
-        this.value = Scene.BOMBED
+        this.buffer = Scene.BOMBED
     }
     changeGameover() {
-        this.value = Scene.GAMEOVER
+        this.buffer = Scene.GAMEOVER
+    }
+
+    updateScene() {
+        if (this.value != this.buffer) {
+            this.value = this.buffer
+            this.time.reset()
+        }
+
+        this.time.counting()
+    }
+
+    count(): number {
+        return this.time.count()
     }
 }

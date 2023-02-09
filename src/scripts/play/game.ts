@@ -1,4 +1,5 @@
 import p5 from "p5"
+
 import { Images } from "~/src/scripts/classes/images"
 import { Scene } from "~/src/scripts/classes/scene"
 import { Keyinput } from "~/src/scripts/classes/keyinput"
@@ -29,14 +30,29 @@ export class Game {
 
     setup(): void {
         this._images.loadAll()
+
+        this.scene().changeLoading()
     }
 
+    // 何かを処理中に中途半端に描画されないようにロックする
     processing() {
-        this._processing.do()
+        if (this._processing.lock.isUnlocked()) {
+            this._drawing.lock.lock()
+            this._scene.updateScene()
+            this._processing.do()
+            this._drawing.lock.unlock()
+        }
+
+        this.repeat()
     }
 
+    // 何かを処理中に中途半端に描画されないようにロックする
     drawing(): void {
-        this._drawing.do()
+        if (this._drawing.lock.isUnlocked()) {
+            // this._processing.lock.lock()
+            this._drawing.do()
+            // this._processing.lock.unlock()
+        }
     }
 
     image(id: number): p5.Image {
@@ -48,8 +64,8 @@ export class Game {
         return this._keyinput
     }
 
+    // キー履歴を循環させて最新のキーを保存する。
     updateKeyinputHistory() {
-        this._keyinput.rotateHistory()
         this._keyinput.updateKeycodeHistory(
             this.p5.keyIsPressed,
             this.p5.keyCode
@@ -58,5 +74,28 @@ export class Game {
 
     scene(): Scene {
         return this._scene
+    }
+
+    // 関数ポインタを渡したいがうまく行かないので保留
+    repeat(time: number = 100) {
+        setTimeout(() => {
+            this.processing()
+        }, time)
+    }
+
+    public lockProcess() {
+        this._processing.lock.lock()
+    }
+
+    public unlockProcess() {
+        this._processing.lock.unlock()
+    }
+
+    public lockDrawing() {
+        this._drawing.lock.lock()
+    }
+
+    public unlockDrawing() {
+        this._drawing.lock.unlock()
     }
 }
