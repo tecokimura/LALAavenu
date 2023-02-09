@@ -1,5 +1,5 @@
 import { Keycode } from "~/src/scripts/configs/keycode"
-import { Debug } from "~/src/scripts/classes/debug"
+import { Log } from "~/src/scripts/debugs/log"
 
 export class Keyinput extends Keycode {
     // GameのKey関連を巻き取る
@@ -18,7 +18,7 @@ export class Keyinput extends Keycode {
     // p5のkeyPressedから呼び出される想定
     keyPressed(p5Keycode: number): void {
         this.pressKeyBuffer = p5Keycode
-        Debug.keycode("Keyinput::keyPressed:" + p5Keycode)
+        Log.keycode("Keyinput::keyPressed:" + p5Keycode)
     }
 
     // p5のkeyPressedから呼び出される想定

@@ -1,7 +1,7 @@
 import p5 from "p5"
 
 import { Game } from "~/src/scripts/play/game"
-import { Debug } from "~/src/scripts/classes/debug"
+import { Log } from "~/src/scripts/debugs/log"
 
 // https://p5js.org/reference/#/p5/p5
 const s = (p5: p5) => {
@@ -9,30 +9,30 @@ const s = (p5: p5) => {
 
     // Init
     p5.preload = () => {
-        Debug.p5("p5.preload.start")
+        Log.p5("p5.preload.start")
 
         game = new Game(p5)
-        Debug.p5("p5.preload.end")
+        Log.p5("p5.preload.end")
     }
 
     // Loading
     p5.setup = () => {
-        Debug.p5("p5.setup.start")
+        Log.p5("p5.setup.start")
         game.setup()
 
         game.processing()
-        Debug.p5("p5.setup.end")
+        Log.p5("p5.setup.end")
     }
 
     //
     p5.keyPressed = () => {
-        Debug.p5("p5.keyPressed=" + p5.keyCode)
+        Log.p5("p5.keyPressed=" + p5.keyCode)
         game.keyinput().keyPressed(p5.keyCode)
     }
 
     //
     p5.keyReleased = () => {
-        Debug.p5("p5.keyReleassed")
+        Log.p5("p5.keyReleassed")
         game.keyinput().keyReleased()
     }
 

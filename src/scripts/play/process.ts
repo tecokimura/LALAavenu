@@ -2,7 +2,7 @@ import { Game } from "~/src/scripts/play/game"
 import { Count } from "~/src/scripts/classes/count"
 import { Keycode } from "~/src/scripts/configs/keycode"
 import { Lock } from "~/src/scripts/classes/lock"
-import { Debug } from "~/src/scripts/classes/debug"
+import { Log } from "~/src/scripts/debugs/log"
 
 export class Process {
     public readonly lock: Lock // 継承した方が良さそうだけど、デザインパターン探す
@@ -42,7 +42,7 @@ export class Process {
         }
 
         this.time.counting()
-        Debug.info("Process::" + this.time.count())
+        Log.info("Process::" + this.time.count())
     }
 
     doLoading(): void {
@@ -56,8 +56,28 @@ export class Process {
             this.game.scene().changeOpening()
             this.time.reset()
         }
+
+
+        /**
+         * a train
+         * a gril
+         * a ballorn
+         * a plane
+         * cloud
+         */
     }
     doOpening(): void {
+
+
+        /**
+         * ゲーム中のメッセージボックス処理 
+         * 電車
+         * 女の子
+         * 気球
+         * 飛行機の移動と反転
+         */
+        
+        // キーを押したらゲームへ
         if (this.game.keyinput().isPressKeyNow(Keycode.ENTER)) {
             this.game.scene().changePlaying()
             this.time.reset()
@@ -78,9 +98,13 @@ export class Process {
     }
 
     doGameover(): void {
+
+        // タイトルへ戻る
         if (this.game.keyinput().isPressKeyNow(Keycode.ENTER)) {
             this.game.scene().changeTitle()
             this.time.reset()
         }
+
+
     }
 }
