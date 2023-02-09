@@ -38,7 +38,10 @@ export class Game {
     processing() {
         if (this._processing.lock.isUnlocked()) {
             this._drawing.lock.lock()
-            this._scene.updateScene()
+            if( this._scene.updateScene() ) {
+                // シーンが変わる時のアップデート
+                this._keyinput = new Keyinput();
+            }
             this._processing.do()
             this._drawing.lock.unlock()
         }

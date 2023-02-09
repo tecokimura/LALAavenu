@@ -66,13 +66,18 @@ export class Scene {
         this.buffer = Scene.GAMEOVER
     }
 
-    updateScene() {
-        if (this.value != this.buffer) {
-            this.value = this.buffer
-            this.time.reset()
+    updateScene() :boolean {
+
+        if(this.value == this.buffer) {
+            this.time.counting();
+            return false;
         }
 
+        // scene update
+        this.value = this.buffer
+        this.time.reset()
         this.time.counting()
+        return true;
     }
 
     count(): number {
