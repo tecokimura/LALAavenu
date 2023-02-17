@@ -1,4 +1,4 @@
-import { Lock } from "~/src/scripts/classes/lock"
+import { Lock } from "~/src/scripts/classes/basis/lock"
 
 test("constructor", () => {
     const lock = new Lock()

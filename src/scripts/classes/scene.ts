@@ -1,4 +1,4 @@
-import { Count } from "~/src/scripts/classes/count"
+import { Count } from "~/src/scripts/classes/basis/count"
 
 export class Scene {
     private readonly time: Count

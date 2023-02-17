@@ -1,5 +1,5 @@
 export class Count {
-    protected value: number = 0
+    private value: number = 0
 
     constructor() {
         this.reset(0)

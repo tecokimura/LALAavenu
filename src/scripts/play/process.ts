@@ -1,7 +1,7 @@
 import { Game } from "~/src/scripts/play/game"
-import { Count } from "~/src/scripts/classes/count"
+import { Count } from "~/src/scripts/classes/basis/count"
 import { Keycode } from "~/src/scripts/configs/keycode"
-import { Lock } from "~/src/scripts/classes/lock"
+import { Lock } from "~/src/scripts/classes/basis/lock"
 import { Log } from "~/src/scripts/debugs/log"
 
 export class Process {

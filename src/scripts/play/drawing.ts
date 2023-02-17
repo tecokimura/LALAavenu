@@ -1,8 +1,8 @@
 import p5 from "p5"
 import { Game } from "~/src/scripts/play/game"
-import { Count } from "~/src/scripts/classes/count"
+import { Count } from "~/src/scripts/classes/basis/count"
 import { Graphics } from "~/src/scripts/classes/graphics"
-import { Lock } from "~/src/scripts/classes/lock"
+import { Lock } from "~/src/scripts/classes/basis/lock"
 
 // Graphicsを継承してもいいかも
 export class Drawing {
