@@ -57,7 +57,6 @@ export class Process {
             this.time.reset()
         }
 
-
         /**
          * a train
          * a gril
@@ -67,16 +66,14 @@ export class Process {
          */
     }
     doOpening(): void {
-
-
         /**
-         * ゲーム中のメッセージボックス処理 
+         * ゲーム中のメッセージボックス処理
          * 電車
          * 女の子
          * 気球
          * 飛行機の移動と反転
          */
-        
+
         // キーを押したらゲームへ
         if (this.game.keyinput().isPressKeyNow(Keycode.ENTER)) {
             this.game.scene().changePlaying()
@@ -98,13 +95,10 @@ export class Process {
     }
 
     doGameover(): void {
-
         // タイトルへ戻る
         if (this.game.keyinput().isPressKeyNow(Keycode.ENTER)) {
             this.game.scene().changeTitle()
             this.time.reset()
         }
-
-
     }
 }
