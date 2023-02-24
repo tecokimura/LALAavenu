@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "pre": "prettier --write src/**/*.ts src/**/**/*.ts",
+        "pre": "prettier --write src/**/*.ts src/**/**/*.ts src/**/**/**/*.ts",
         "jest": "jest",
         "test": "run-s test:*",
         "test:prettier": "run-s pre",

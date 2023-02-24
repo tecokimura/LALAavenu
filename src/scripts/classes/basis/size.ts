@@ -1,4 +1,3 @@
-
 export class Size {
     private width: number = 0
     private height: number = 0

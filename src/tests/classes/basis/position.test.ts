@@ -27,8 +27,8 @@ test("reset", () => {
 test("move", () => {
     const pos = new Position(10, 20)
 
-    pos.moveX(1);
-    pos.moveY(2);
+    pos.moveX(1)
+    pos.moveY(2)
 
     expect(pos.getX()).toBe(11)
     expect(pos.getY()).toBe(22)

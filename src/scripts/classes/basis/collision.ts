@@ -4,57 +4,28 @@ export class Collision {
     private width: number = 0
     private height: number = 0
 
-    constructor(x: number=0, y: number=0, w: number=0, h: number=0) {
+    constructor(x: number = 0, y: number = 0, w: number = 0, h: number = 0) {
         this.reset(x, y, w, h)
     }
 
     reset(x: number, y: number, w: number, h: number) {
         this.offset_x = x
         this.offset_y = y
-        this.resetWidth(w)
-        this.resetHeight(h)
+        this.width = w
+        this.height = h
     }
 
-    getX(): number {
+    get left(): number {
         return this.offset_x
     }
-    getY(): number {
+    get top(): number {
         return this.offset_y
     }
-    getWidth(): number {
-        return this.width
-    }
-    getHeight(): number {
-        return this.height
-    }
-
-    getHitLeft(): number {
-        return this.offset_x
-    }
-    getHitTop(): number {
-        return this.offset_y
-    }
-    getHitRight(): number {
+    get right(): number {
         return this.offset_x + this.width
     }
-    getHitBottom(): number {
+    get bottom(): number {
         return this.offset_y + this.height
-    }
-
-    resetX(x: number) {
-        this.offset_x = x
-    }
-
-    resetY(y: number) {
-        this.offset_y = y
-    }
-
-    resetWidth(w: number) {
-        if (0 <= w) this.width = w
-    }
-
-    resetHeight(h: number) {
-        if (0 <= h) this.height = h
     }
 
     // MEMO: 各クラスで位置などを考慮したCollisionクラスを作って判定することになりそう。
@@ -62,10 +33,10 @@ export class Collision {
         if (target == null) return false
 
         if (
-            this.getHitLeft() <= target.getHitRight() &&
-            target.getHitLeft() <= this.getHitRight() &&
-            this.getHitTop() <= target.getHitBottom() &&
-            target.getHitTop() <= this.getHitBottom()
+            this.left <= target.right &&
+            target.left <= this.right &&
+            this.top <= target.bottom &&
+            target.top <= this.bottom
         ) {
             return true
         }

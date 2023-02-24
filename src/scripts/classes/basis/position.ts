@@ -1,4 +1,3 @@
-
 export class Position {
     private x: number = 0
     private y: number = 0
@@ -31,11 +30,10 @@ export class Position {
         this.y = y
     }
 
-    moveX(addx :number) {
+    moveX(addx: number) {
         this.x += addx
     }
-    moveY(addy :number) {
+    moveY(addy: number) {
         this.y += addy
     }
-
 }
