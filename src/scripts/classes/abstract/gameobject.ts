@@ -6,13 +6,9 @@ import { BasicObject } from "~/src/scripts/classes/basis/basicobject"
 // 背景、プライヤー、敵などのをまとめる根底クラス
 
 export abstract class GameObject extends BasicObject {
-    // "p5.Imageオブジェクト"か"画像インデックス"か悩んだが
-    // 読み込みと管理がimagesクラスなので画像インデックスを返すことにした。
-    abstract get imageNo(): number
-
     // Kind
     // そのオブジェクトが何の種類か
-    protected kind: number
+    protected objKind: number
     static readonly NONE: number = 0
     static readonly INTERFACE: number = 1
     static readonly BACKGROUND: number = 2
@@ -20,23 +16,23 @@ export abstract class GameObject extends BasicObject {
     static readonly SHOT: number = 4
     static readonly ENEMY: number = 5
     public isInterface(): boolean {
-        return this.kind == GameObject.INTERFACE
+        return this.objKind == GameObject.INTERFACE
     }
     public isBackground(): boolean {
-        return this.kind == GameObject.BACKGROUND
+        return this.objKind == GameObject.BACKGROUND
     }
     public isPlayer(): boolean {
-        return this.kind == GameObject.PLAYER
+        return this.objKind == GameObject.PLAYER
     }
     public isShot(): boolean {
-        return this.kind == GameObject.SHOT
+        return this.objKind == GameObject.SHOT
     }
     public isEnemy(): boolean {
-        return this.kind == GameObject.ENEMY
+        return this.objKind == GameObject.ENEMY
     }
 
     constructor() {
         super()
-        this.kind = GameObject.NONE
+        this.objKind = GameObject.NONE
     }
 }

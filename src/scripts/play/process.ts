@@ -3,6 +3,8 @@ import { Count } from "~/src/scripts/classes/basis/count"
 import { Keycode } from "~/src/scripts/configs/keycode"
 import { Lock } from "~/src/scripts/classes/basis/lock"
 import { Log } from "~/src/scripts/debugs/log"
+import { Train } from "../classes/background/train"
+import { Balloon } from "../classes/background/balloon"
 
 export class Process {
     public readonly lock: Lock // 継承した方が良さそうだけど、デザインパターン探す
@@ -57,6 +59,11 @@ export class Process {
             this.time.reset()
         }
 
+        // test
+        if (this.game.backgrounds.length == 0) {
+            this.game.backgrounds.push(new Train(224))
+        }
+
         /**
          * a train
          * a gril
@@ -64,6 +71,10 @@ export class Process {
          * a plane
          * cloud
          */
+        this.game.backgrounds.forEach((train) => {
+            train.move()
+            console.log("x=" + train.x + ",y=" + train.y)
+        })
     }
     doOpening(): void {
         /**

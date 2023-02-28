@@ -28,7 +28,6 @@ export class Images {
     }
 
     // 画像参照様INDEX（scripts/resource/pngs.ts と連動）
-    static readonly ID_UFO = 0
     static readonly ID_BG_BALLOON = 0
     static readonly ID_BG_BALLOON_GIRL = 1
     static readonly ID_BG_BOMBED = 2
@@ -39,8 +38,8 @@ export class Images {
     static readonly ID_BG_TOWN_BACK = 7
     static readonly ID_BG_TOWN_FRONT = 8
     static readonly ID_BG_TRAIN0 = 9
-    static readonly ID_BG_TRAIN1 = 0
-    static readonly ID_BG_TRAIN2 = 10
+    static readonly ID_BG_TRAIN1 = 10
+    static readonly ID_BG_TRAIN2 = 11
     static readonly ID_BG_TRAIN3 = 12
     static readonly ID_BG_TRAIN4 = 13
     static readonly ID_EFFECT_BREAK_AIR0 = 14
