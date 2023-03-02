@@ -45,7 +45,22 @@ export class Graphics {
             Display.HEIGHT * Display.SCALE
         )
     }
-    drawImage(image: p5.Image, x: number, y: number): void {
-        this.p5.image(image, x, y)
+
+    drawImage(
+        image: p5.Image,
+        x: number,
+        y: number,
+        isFlip: boolean = false
+    ): void {
+        let imgWidthHalf = image.width / 2
+        let imgHeightHalf = image.height / 2
+
+        this.p5.push()
+        this.p5.translate(x + imgWidthHalf, y + imgHeightHalf)
+
+        if (isFlip) this.p5.scale(-1, 1)
+
+        this.p5.image(image, -1 * imgWidthHalf, -1 * imgHeightHalf)
+        this.p5.pop()
     }
 }

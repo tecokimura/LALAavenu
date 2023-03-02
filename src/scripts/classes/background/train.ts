@@ -17,7 +17,7 @@ export class Train extends Background.Base {
     static readonly SPEED_LEFT: number = -4
 
     get image(): number {
-        return Images.ID_BG_TRAIN0
+        return Images.ID_BG_TRAIN0 + this.type
     }
 
     constructor(y: number) {
