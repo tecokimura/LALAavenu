@@ -5,6 +5,7 @@ import { Lock } from "~/src/scripts/classes/basis/lock"
 import { Log } from "~/src/scripts/debugs/log"
 import { Train } from "../classes/background/train"
 import { Balloon } from "../classes/background/balloon"
+import { Util } from "~/src/scripts/classes/util"
 
 export class Process {
     public readonly lock: Lock // 継承した方が良さそうだけど、デザインパターン探す
@@ -61,7 +62,7 @@ export class Process {
 
         // test
         if (this.game.backgrounds.length == 0) {
-            this.game.backgrounds.push(new Train(224))
+            this.game.backgrounds.push(new Train(Util.rand(Train.MAX), 0, 224))
         }
 
         /**

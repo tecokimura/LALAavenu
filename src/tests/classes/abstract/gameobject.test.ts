@@ -72,3 +72,12 @@ test("collision", () => {
     obj2.move()
     expect(obj1.isOverlap(obj2)).toBe(false)
 })
+
+test("isXxxx", () => {
+    const obj = new Test_GameObject()
+
+    expect(obj.isBackground()).toBe(false)
+    expect(obj.isPlayer()).toBe(false)
+    expect(obj.isShot()).toBe(false)
+    expect(obj.isEnemy()).toBe(false)
+})

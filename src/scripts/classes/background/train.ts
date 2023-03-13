@@ -1,10 +1,9 @@
 import { Background } from "~/src/scripts/classes/background/base"
 import { Position } from "~/src/scripts/classes/basis/position"
 import { Speed } from "~/src/scripts/classes/basis/speed"
-import { Images } from "~/src/scripts/classes/images"
-import { Util } from "~/src/scripts/classes/util"
 
 export class Train extends Background.Base {
+    // 電車の種類
     public readonly type: number = Train.PINK
     static readonly PINK: number = 0
     static readonly GREEN: number = 1
@@ -17,22 +16,25 @@ export class Train extends Background.Base {
     static readonly SPEED_LEFT: number = -4
 
     get image(): number {
-        return Images.ID_BG_TRAIN0 + this.type
+        // return Images.ID_BG_TRAIN0 + this.type
+        return this.offsetImageNo + this.type
     }
 
-    constructor(y: number) {
+    constructor(type: number, x: number, y: number) {
         super()
 
-        this.type = Util.rand(Train.MAX)
+        // 電車の色
+        this.type = type
+        this.pos = new Position(x, y)
+    }
 
-        if (Util.isRand50per()) {
-            // 右向きに進む
-            this.pos = new Position(0, y)
-            this.speed = new Speed(Train.SPEED_RIGHT, 0)
-        } else {
-            // 左向きに進む
-            this.pos = new Position(10, y)
-            this.speed = new Speed(Train.SPEED_LEFT, 0)
-        }
+    directionRight(): Train {
+        this.speed = new Speed(Train.SPEED_RIGHT, 0)
+        return this
+    }
+
+    directionLeft(): Train {
+        this.speed = new Speed(Train.SPEED_LEFT, 0)
+        return this
     }
 }
