@@ -14,18 +14,22 @@ export class Scene {
 
     // 正確に連番である必要はない
     static readonly NONE = 0
-    static readonly LOADING = 1
-    static readonly TITLE = 2
-    static readonly OPENING = 3
-    static readonly PLAYING = 4
-    static readonly BOMBED = 5
-    static readonly GAMEOVER = 6
+    static readonly LOADING = 10
+    static readonly INIT_TITLE = 19
+    static readonly TITLE = 20
+    static readonly OPENING = 30
+    static readonly PLAYING = 40
+    static readonly BOMBED = 50
+    static readonly GAMEOVER = 60
 
     isNone(): boolean {
         return this.value == Scene.NONE
     }
     isLoading(): boolean {
         return this.value == Scene.LOADING
+    }
+    isInitTitle(): boolean {
+        return this.value == Scene.INIT_TITLE
     }
     isTitle(): boolean {
         return this.value == Scene.TITLE
@@ -51,6 +55,9 @@ export class Scene {
         this.buffer = Scene.LOADING
     }
     changeTitle() {
+        this.buffer = Scene.INIT_TITLE
+    }
+    startTitle() {
         this.buffer = Scene.TITLE
     }
     changeOpening() {

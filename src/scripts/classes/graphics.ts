@@ -32,12 +32,23 @@ export class Graphics {
         this.p5.rect(x, y, w * Display.SCALE, h * Display.SCALE)
     }
 
+    // ?
     drawRect(x: number, y: number, w: number, h: number) {
         this.p5.rect(x, y, w * Display.SCALE, h * Display.SCALE)
     }
 
     clearRect(r: number = 255, g: number = 255, b: number = 255) {
         this.setColor(r, b, g)
+        this.fillRect(
+            Display.X,
+            Display.Y,
+            Display.WIDTH * Display.SCALE,
+            Display.HEIGHT * Display.SCALE
+        )
+    }
+
+    clearRectBlack() {
+        this.setColor(0, 0, 0)
         this.fillRect(
             Display.X,
             Display.Y,

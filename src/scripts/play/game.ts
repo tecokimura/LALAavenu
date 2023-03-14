@@ -96,6 +96,11 @@ export class Game {
         }, time)
     }
 
+    clearBackgrounds() {
+        // TODO: これでいいのか検討
+        this.backgrounds = new Array()
+    }
+
     public lockProcess() {
         this._processing.lock.lock()
     }

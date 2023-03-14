@@ -42,6 +42,9 @@ export class Drawing {
                     this.time.count() % 100,
                     50
                 )
+            } else if (this.game.scene().isInitTitle()) {
+                // タイトル画面初期化中の描画
+                this.grap.clearRectBlack()
             } else if (this.game.scene().isTitle()) {
                 this.grap.clearRect(60, 60, 220)
 
@@ -52,7 +55,11 @@ export class Drawing {
                 )
 
                 this.game.backgrounds.forEach((bg) => {
-                    this.grap.drawImage(this.game.image(bg.image), bg.x, bg.y)
+                    this.grap.drawImage(
+                        this.game.image(bg.image),
+                        bg.x,
+                        bg.y
+                    )
                 })
 
                 this.grap.drawImage(

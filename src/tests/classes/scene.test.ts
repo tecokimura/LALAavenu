@@ -8,12 +8,12 @@ test("constructor", () => {
 test("check number", () => {
     // 逆のが綺麗だけど見やすいからこうする
     expect(0).toBe(Scene.NONE)
-    expect(1).toBe(Scene.LOADING)
-    expect(2).toBe(Scene.TITLE)
-    expect(3).toBe(Scene.OPENING)
-    expect(4).toBe(Scene.PLAYING)
-    expect(5).toBe(Scene.BOMBED)
-    expect(6).toBe(Scene.GAMEOVER)
+    expect(10).toBe(Scene.LOADING)
+    expect(20).toBe(Scene.TITLE)
+    expect(30).toBe(Scene.OPENING)
+    expect(40).toBe(Scene.PLAYING)
+    expect(50).toBe(Scene.BOMBED)
+    expect(60).toBe(Scene.GAMEOVER)
 })
 
 test("flow isXxx()", () => {
@@ -26,9 +26,9 @@ test("flow isXxx()", () => {
     s.changeTitle()
     expect(true).toEqual(s.isLoading())
     s.updateScene()
-    expect(true).toEqual(s.isTitle())
+    expect(true).toEqual(s.isInitTitle())
     s.changeOpening()
-    expect(true).toEqual(s.isTitle())
+    expect(true).toEqual(s.isInitTitle())
     s.updateScene()
     expect(true).toEqual(s.isOpening())
     s.changeBombed()

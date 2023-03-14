@@ -6,6 +6,10 @@ import { Log } from "~/src/scripts/debugs/log"
 import { Train } from "../classes/background/train"
 import { Balloon } from "../classes/background/balloon"
 import { Util } from "~/src/scripts/classes/util"
+import { Images } from "../classes/images"
+
+// 出現位置と消える位置、反転した時の描画に調整が必要。
+// 画像サイズ分ずらす
 
 export class Process {
     public readonly lock: Lock // 継承した方が良さそうだけど、デザインパターン探す
@@ -32,6 +36,9 @@ export class Process {
             }
         } else if (this.game.scene().isLoading()) {
             this.doLoading()
+        } else if (this.game.scene().isInitTitle()) {
+            this.doInitTitle()
+            this.game.scene().startTitle()
         } else if (this.game.scene().isTitle()) {
             this.doTitle()
         } else if (this.game.scene().isOpening()) {
@@ -54,15 +61,19 @@ export class Process {
             this.time.reset()
         }
     }
+
+    doInitTitle(): void {
+        // test
+        this.game.clearBackgrounds()
+        const train = new Train(Util.rand(Train.MAX), 0, 224).directionRight()
+        train.setOffsetImageNo(Images.ID_BG_TRAIN0);
+        this.game.backgrounds.push(train)
+    }
+
     doTitle(): void {
         if (this.game.keyinput().isPressKeyNow(Keycode.ENTER)) {
             this.game.scene().changeOpening()
             this.time.reset()
-        }
-
-        // test
-        if (this.game.backgrounds.length == 0) {
-            this.game.backgrounds.push(new Train(Util.rand(Train.MAX), 0, 224))
         }
 
         /**
