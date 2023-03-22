@@ -7,10 +7,6 @@ export abstract class ProcessBase {
     protected count: Count
     public readonly lock: Lock
 
-    // abstractか検討する
-    abstract prepare(): void
-    abstract do(): void
-
     constructor(g: Game) {
         this.game = g
 
@@ -18,4 +14,7 @@ export abstract class ProcessBase {
 
         this.lock = new Lock()
     }
+
+    abstract prepare(): void
+    abstract do(): void
 }

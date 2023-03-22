@@ -2,7 +2,7 @@ import { Game } from "~/src/scripts/play/game"
 import { Keycode } from "~/src/scripts/configs/keycode"
 import { Log } from "~/src/scripts/debugs/log"
 
-import { ProcessBase } from "~/src/scripts/play/process/base"
+import { ProcessBase } from "~/src/scripts/play/process/processbase"
 import { Title } from "./process/title"
 
 // 出現位置と消える位置、反転した時の描画に調整が必要。

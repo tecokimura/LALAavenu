@@ -1,4 +1,4 @@
-import { ProcessBase } from "~/src/scripts/play/process/base"
+import { ProcessBase } from "~/src/scripts/play/process/processbase"
 
 import { Game } from "~/src/scripts/play/game"
 import { Images } from "~/src/scripts/classes/images"
