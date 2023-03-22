@@ -11,13 +11,13 @@ export class Drawing {
 
     private readonly grap: Graphics
     private readonly game: Game
-    private readonly time: Count
+    private readonly count: Count
 
     constructor(g: Game, p: p5) {
         this.game = g
         this.grap = new Graphics(p)
         this.lock = new Lock()
-        this.time = new Count()
+        this.count = new Count()
     }
 
     init() {}
@@ -31,7 +31,7 @@ export class Drawing {
 
                 this.grap.drawImage(
                     this.game.image(27),
-                    this.time.count() % 100,
+                    this.count.value % 100,
                     20
                 )
             } else if (this.game.scene().isLoading()) {
@@ -39,7 +39,7 @@ export class Drawing {
 
                 this.grap.drawImage(
                     this.game.image(30),
-                    this.time.count() % 100,
+                    this.count.value % 100,
                     50
                 )
             } else if (this.game.scene().isInitTitle()) {
@@ -55,11 +55,7 @@ export class Drawing {
                 )
 
                 this.game.backgrounds.forEach((bg) => {
-                    this.grap.drawImage(
-                        this.game.image(bg.image),
-                        bg.x,
-                        bg.y
-                    )
+                    this.grap.drawImage(this.game.image(bg.image), bg.x, bg.y)
                 })
 
                 this.grap.drawImage(
@@ -77,7 +73,7 @@ export class Drawing {
                 this.grap.clearRect(20, 20, 20)
             }
 
-            this.time.counting()
+            this.count.counting()
         }
     }
 

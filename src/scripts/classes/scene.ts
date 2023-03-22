@@ -87,6 +87,6 @@ export class Scene {
     }
 
     count(): number {
-        return this.time.count()
+        return this.time.value
     }
 }

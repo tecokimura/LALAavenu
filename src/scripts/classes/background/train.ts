@@ -1,6 +1,7 @@
 import { Background } from "~/src/scripts/classes/background/base"
 import { Position } from "~/src/scripts/classes/basis/position"
 import { Speed } from "~/src/scripts/classes/basis/speed"
+import { ImgId } from "~/src/scripts/configs/imgid"
 
 export class Train extends Background.Base {
     // 電車の種類
@@ -17,7 +18,7 @@ export class Train extends Background.Base {
 
     get image(): number {
         // return Images.ID_BG_TRAIN0 + this.type
-        return this.offsetImageNo + this.type
+        return ImgId.ID_BG_TRAIN0 + this.type
     }
 
     constructor(type: number, x: number, y: number) {
@@ -28,6 +29,10 @@ export class Train extends Background.Base {
         this.pos = new Position(x, y)
     }
 
+    direction(spx: number): Train {
+        this.speed = new Speed(spx, 0)
+        return this
+    }
     directionRight(): Train {
         this.speed = new Speed(Train.SPEED_RIGHT, 0)
         return this

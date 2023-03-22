@@ -1,19 +1,19 @@
 export class Count {
-    private value: number = 0
+    private num: number = 0
 
     constructor() {
         this.reset(0)
     }
 
     reset(value = 0) {
-        if (0 <= value) this.value = value
+        if (0 <= value) this.num = value
     }
 
-    count(): number {
-        return this.value
+    get value(): number {
+        return this.num
     }
 
     counting(n: number = 1) {
-        this.value += n
+        this.num += n
     }
 }

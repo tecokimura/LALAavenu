@@ -1,4 +1,5 @@
 import { Train } from "~/src/scripts/classes/background/train"
+import { ImgId } from "~/src/scripts/configs/imgid"
 
 // 環境変数を伴うテスト（画像関連）はエラーになるので改めて調査する
 //  The 'import.meta' meta-property is only allowed when the '--module' option is 'es2020', 'es2022', 'esnext', 'system', 'node16', or 'nodenext'.
@@ -13,9 +14,5 @@ test("constructor", () => {
 test("offset image no", () => {
     const obj = new Train(Train.RED, 0, 0)
 
-    expect(obj.image).toBe(Train.RED)
-
-    obj.setOffsetImageNo(10)
-
-    expect(obj.image).toBe(10 + Train.RED)
+    expect(obj.image).toBe(ImgId.ID_BG_TRAIN0 + Train.RED)
 })

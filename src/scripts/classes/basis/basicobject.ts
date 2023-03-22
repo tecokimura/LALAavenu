@@ -10,6 +10,14 @@ export class BasicObject {
     protected size: Size = new Size()
     protected collision: Collision = new Collision()
 
+    public setPotision(x: number, y: number) {
+        this.pos = new Position(x, y)
+    }
+
+    public setCollision(x: number, y: number, w: number, h: number) {
+        this.collision = new Collision(x, y, w, h)
+    }
+
     public move() {
         this.pos.moveX(this.speed.getX())
         this.pos.moveY(this.speed.getY())
