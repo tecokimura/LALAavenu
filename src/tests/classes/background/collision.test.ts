@@ -2,14 +2,14 @@ import { Train } from "~/src/scripts/classes/background/train"
 import { Collision } from "~/src/scripts/classes/basis/collision"
 
 test("object collision", () => {
-    const col = new Collision(0, 0, 200, 200)
+    const display = new Collision(0, 0, 200, 200)
 
     const train = new Train(Train.PINK, 0, 0)
     train.setCollision(0, 0, 50, 50)
     train.direction(10)
 
     let is = false
-    is = col.isOverlap(train.hitRect())
+    is = display.isOverlap(train.hitRect())
     expect(is).toBe(true)
 
     // x=100,w=50
@@ -17,45 +17,50 @@ test("object collision", () => {
         train.move()
     }
 
-    expect(col.isOverlap(train.hitRect())).toBe(true)
+    expect(display.isOverlap(train.hitRect())).toBe(true)
 
     // x=200,w=50
     for (let i = 0; i < 10; i++) {
         train.move()
     }
-    expect(col.isOverlap(train.hitRect())).toBe(true)
+    expect(display.isOverlap(train.hitRect())).toBe(true)
 
     // x=201,w=50
     train.direction(1)
     train.move()
-    expect(col.isOverlap(train.hitRect())).toBe(false)
+    expect(display.isOverlap(train.hitRect())).toBe(false)
 })
 
 // for で回して移動させて総定数なくなることをチェックする
-test("for test", () => {
-    const col = new Collision(0, 0, 200, 200)
+test("Remove the train from the list when it exits the screen.", () => {
+    const TRAIN_NUM = 5
+    const display = new Collision(0, 0, 240, 240)
 
-    const list = new Array()
+    //------
+    // new test
+    //=========
+    const set = new Set<Train>()
 
-    for (let i = 0; i < 5; i++) {
-        const train = new Train(Train.PINK, i * 10, 0)
+    for (let i = 0; i < TRAIN_NUM; i++) {
+        const train = new Train(Train.PINK, i * 20, 0)
         train.setCollision(0, 0, 50, 50)
         train.direction(20)
 
-        list.push(train)
+        set.add(train)
     }
 
-    for (let i = 0; i < 10; i++) {
-        list.forEach((train, index) => {
-            train.move()
+    set.forEach((value, vAgain, set) => {
+        for (let i = 0; i < 10; i++) {
+            value.move()
 
-            if (col.isOverlap(train.hitRect()) == false) {
+            if (display.isOverlap(value.hitRect()) == false) {
                 // 画面から出ている（画面に当たっていない）なら削除
-                delete list[index]
+                console.log(value)
+                set.delete(value)
             }
-        })
-    }
+        }
+    })
 
-    // 配列のメモリは変更されないので５のまま
-    expect(list.length).toBe(1)
+    // 計算上３つ残る
+    expect(set.size).toBe(3)
 })
