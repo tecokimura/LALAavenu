@@ -5,7 +5,7 @@ export namespace Background {
     export abstract class Base extends ImageGameObject {
         constructor() {
             super()
-            this.objKind = GameObject.BACKGROUND
+            this.objKind = GameObject.BACKGROUND_TRAIN
         }
     }
 }

@@ -35,10 +35,6 @@ test("object collision", () => {
 test("Remove the train from the list when it exits the screen.", () => {
     const TRAIN_NUM = 5
     const display = new Collision(0, 0, 240, 240)
-
-    //------
-    // new test
-    //=========
     const set = new Set<Train>()
 
     for (let i = 0; i < TRAIN_NUM; i++) {

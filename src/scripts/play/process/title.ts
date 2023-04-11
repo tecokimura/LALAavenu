@@ -1,13 +1,13 @@
 import { ProcessBase } from "~/src/scripts/play/process/processbase"
 
 import { Game } from "~/src/scripts/play/game"
-import { Images } from "~/src/scripts/classes/images"
 import { Util } from "~/src/scripts/classes/util"
 import { Keycode } from "~/src/scripts/configs/keycode"
 import { Count } from "~/src/scripts/classes/basis/count"
+import { Display } from "~/src/scripts/configs/display"
 
 import { Train } from "~/src/scripts/classes/background/train"
-import { Display } from "../../configs/display"
+import { Balloon } from "~/src/scripts/classes/background/balloon"
 
 // タイトル画面の処理
 export class Title extends ProcessBase {
@@ -17,11 +17,10 @@ export class Title extends ProcessBase {
 
     // 初期化
     prepare() {
-        this.game.clearBackgrounds()
-        const train = new Train(Util.rand(Train.MAX), 0, 224).directionRight()
-        this.game.backgrounds.push(train)
-
         this.count = new Count()
+        this.game.backgrounds.clear()
+
+        this.game.backgrounds.add(new Balloon(-200, 120))
     }
 
     do() {
@@ -31,7 +30,7 @@ export class Title extends ProcessBase {
 
         // 追加
         if (this.count.value % 100 == 0) {
-            this.game.backgrounds.push(this.newTrain(1))
+            this.game.backgrounds.add(this.newTrain(1))
         }
 
         /**
@@ -41,12 +40,12 @@ export class Title extends ProcessBase {
          * a plane
          * cloud
          */
-        this.game.backgrounds.forEach((train, index) => {
-            train.move()
+        this.game.backgrounds.forEach((bgobj, index) => {
+            bgobj.move()
 
-            if (Display.collision.isOverlap(train.hitRect()) == false) {
+            if (Display.collision.isOverlap(bgobj.hitRect()) == false) {
                 // 画面から出ている（画面に当たっていない）なら削除
-                delete this.game.backgrounds[index]
+                this.game.backgrounds.delete(bgobj)
                 console.log("train delete =" + index)
             }
         })

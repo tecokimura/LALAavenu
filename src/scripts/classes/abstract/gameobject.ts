@@ -10,16 +10,36 @@ export abstract class GameObject extends BasicObject {
     // そのオブジェクトが何の種類か
     protected objKind: number
     static readonly NONE: number = 0
-    static readonly INTERFACE: number = 1
-    static readonly BACKGROUND: number = 2
-    static readonly PLAYER: number = 3
-    static readonly SHOT: number = 4
-    static readonly ENEMY: number = 5
-    public isInterface(): boolean {
-        return this.objKind == GameObject.INTERFACE
+    static readonly USER_INTERFACE: number = 10
+    static readonly BACKGROUND_TRAIN: number = 20
+    static readonly BACKGROUND_BALLOON: number = 21
+    static readonly BACKGROUND_GIRL: number = 22
+    static readonly BACKGROUND_CLOUD: number = 23
+    static readonly PLAYER: number = 30
+    static readonly SHOT: number = 40
+    static readonly ENEMY: number = 50
+    public isUserInterface(): boolean {
+        return this.objKind == GameObject.USER_INTERFACE
     }
     public isBackground(): boolean {
-        return this.objKind == GameObject.BACKGROUND
+        return (
+            this.objKind == GameObject.BACKGROUND_TRAIN ||
+            this.objKind == GameObject.BACKGROUND_BALLOON ||
+            this.objKind == GameObject.BACKGROUND_GIRL ||
+            this.objKind == GameObject.BACKGROUND_CLOUD
+        )
+    }
+    public isBackgroundTrain(): boolean {
+        return this.objKind == GameObject.BACKGROUND_TRAIN
+    }
+    public isBackgroundBalloon(): boolean {
+        return this.objKind == GameObject.BACKGROUND_BALLOON
+    }
+    public isBackgroundGirl(): boolean {
+        return this.objKind == GameObject.BACKGROUND_GIRL
+    }
+    public isBackgroundCloud(): boolean {
+        return this.objKind == GameObject.BACKGROUND_CLOUD
     }
     public isPlayer(): boolean {
         return this.objKind == GameObject.PLAYER

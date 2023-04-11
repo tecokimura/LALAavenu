@@ -10,17 +10,25 @@ export class BasicObject {
     protected size: Size = new Size()
     protected collision: Collision = new Collision()
 
-    public setPotision(x: number, y: number) {
+    public setPotision(x: number, y: number): BasicObject {
         this.pos = new Position(x, y)
+        return this
     }
 
-    public setCollision(x: number, y: number, w: number, h: number) {
+    public setCollision(
+        x: number,
+        y: number,
+        w: number,
+        h: number
+    ): BasicObject {
         this.collision = new Collision(x, y, w, h)
+        return this
     }
 
-    public move() {
+    public move(): BasicObject {
         this.pos.moveX(this.speed.getX())
         this.pos.moveY(this.speed.getY())
+        return this
     }
 
     public isOverlap(target: BasicObject): boolean {
@@ -45,8 +53,8 @@ export class BasicObject {
         return new Collision(
             this.x + this.collision.left,
             this.y + this.collision.top,
-            this.collision.right,
-            this.collision.bottom
+            this.collision.width,
+            this.collision.height
         )
     }
 }

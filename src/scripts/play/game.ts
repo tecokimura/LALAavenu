@@ -19,7 +19,7 @@ export class Game {
 
     private counter: number = 0
 
-    public backgrounds: Array<Background.Base>
+    public backgrounds: Set<Background.Base>
 
     constructor(p: p5) {
         this.p5 = p
@@ -31,7 +31,7 @@ export class Game {
         this._keyinput = new Keyinput()
         // 乱数の初期化
 
-        this.backgrounds = new Array()
+        this.backgrounds = new Set<Background.Base>()
     }
 
     setup(): void {
@@ -94,11 +94,6 @@ export class Game {
         setTimeout(() => {
             this.processing()
         }, time)
-    }
-
-    clearBackgrounds() {
-        // TODO: これでいいのか検討
-        this.backgrounds = new Array()
     }
 
     public lockProcess() {
