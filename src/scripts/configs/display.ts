@@ -14,8 +14,16 @@ export class Display {
         return new Collision(
             Display.X - Display.MARGIN,
             Display.Y - Display.MARGIN,
-            Display.WIDTH + Display.MARGIN,
-            Display.HEIGHT + Display.MARGIN
+            Display.WIDTH + Display.MARGIN * 2,
+            Display.HEIGHT + Display.MARGIN * 2
         )
+    }
+
+    static get centerOfTheWidth(): number {
+        return Display.X + Display.WIDTH / 2
+    }
+
+    static get centerOfTheHigh(): number {
+        return Display.Y + Display.HEIGHT / 2
     }
 }

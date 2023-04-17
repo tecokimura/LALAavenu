@@ -21,7 +21,7 @@ export abstract class GameObject extends BasicObject {
     public isUserInterface(): boolean {
         return this.objKind == GameObject.USER_INTERFACE
     }
-    public isBackground(): boolean {
+    public get isBackground(): boolean {
         return (
             this.objKind == GameObject.BACKGROUND_TRAIN ||
             this.objKind == GameObject.BACKGROUND_BALLOON ||
@@ -29,25 +29,25 @@ export abstract class GameObject extends BasicObject {
             this.objKind == GameObject.BACKGROUND_CLOUD
         )
     }
-    public isBackgroundTrain(): boolean {
+    public get isBackgroundTrain(): boolean {
         return this.objKind == GameObject.BACKGROUND_TRAIN
     }
-    public isBackgroundBalloon(): boolean {
+    public get isBackgroundBalloon(): boolean {
         return this.objKind == GameObject.BACKGROUND_BALLOON
     }
-    public isBackgroundGirl(): boolean {
+    public get isBackgroundGirl(): boolean {
         return this.objKind == GameObject.BACKGROUND_GIRL
     }
-    public isBackgroundCloud(): boolean {
+    public get isBackgroundCloud(): boolean {
         return this.objKind == GameObject.BACKGROUND_CLOUD
     }
-    public isPlayer(): boolean {
+    public get isPlayer(): boolean {
         return this.objKind == GameObject.PLAYER
     }
-    public isShot(): boolean {
+    public get isShot(): boolean {
         return this.objKind == GameObject.SHOT
     }
-    public isEnemy(): boolean {
+    public get isEnemy(): boolean {
         return this.objKind == GameObject.ENEMY
     }
 

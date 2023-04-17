@@ -76,8 +76,12 @@ test("collision", () => {
 test("isXxxx", () => {
     const obj = new Test_GameObject()
 
-    expect(obj.isBackground()).toBe(false)
-    expect(obj.isPlayer()).toBe(false)
-    expect(obj.isShot()).toBe(false)
-    expect(obj.isEnemy()).toBe(false)
+    expect(obj.isBackground).toBe(false)
+    expect(obj.isBackgroundTrain).toBe(false)
+    expect(obj.isBackgroundBalloon).toBe(false)
+    expect(obj.isBackgroundGirl).toBe(false)
+    expect(obj.isBackgroundCloud).toBe(false)
+    expect(obj.isPlayer).toBe(false)
+    expect(obj.isShot).toBe(false)
+    expect(obj.isEnemy).toBe(false)
 })

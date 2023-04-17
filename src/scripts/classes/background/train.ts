@@ -1,3 +1,4 @@
+import { GameObject } from "~/src/scripts/classes/abstract/gameobject"
 import { Background } from "~/src/scripts/classes/background/base"
 import { Position } from "~/src/scripts/classes/basis/position"
 import { Speed } from "~/src/scripts/classes/basis/speed"
@@ -23,6 +24,7 @@ export class Train extends Background.Base {
 
     constructor(type: number, x: number, y: number) {
         super()
+        this.objKind = GameObject.BACKGROUND_TRAIN
 
         // 電車の色
         this.type = type
