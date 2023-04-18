@@ -8,6 +8,7 @@ import { Display } from "~/src/scripts/configs/display"
 
 import { Train } from "~/src/scripts/classes/background/train"
 import { Balloon } from "~/src/scripts/classes/background/balloon"
+import { Girl } from "~/src/scripts/classes/background/girl"
 
 // タイトル画面の処理
 export class Title extends ProcessBase {
@@ -20,7 +21,8 @@ export class Title extends ProcessBase {
         this.count = new Count()
         this.game.backgrounds.clear()
 
-        this.game.backgrounds.add(this.newBalloon(-80, 120))
+        this.game.backgrounds.add(this.newBalloon(-30, 160))
+        this.game.backgrounds.add(this.newGirl(180, 300))
     }
 
     do() {
@@ -28,17 +30,15 @@ export class Title extends ProcessBase {
             this.game.scene().changeOpening()
         }
 
-        // 追加
+        // 定期的に電車を追加して発車させる
         if (this.count.value % 100 == 0) {
             this.game.backgrounds.add(this.newTrain(1))
         }
 
         /**
-         * a train
          * a gril
-         * a ballorn
          * a plane
-         * cloud
+         * clouds
          */
         this.game.backgrounds.forEach((bgobj, index) => {
             bgobj.move()
@@ -114,5 +114,12 @@ export class Title extends ProcessBase {
         )
 
         return balloon
+    }
+
+    // Collisionが必要なさそうなので特に何もする必要がなかった・・・
+    newGirl(x: number, y: number): Girl {
+        let girl = new Girl(x, y)
+
+        return girl
     }
 }
