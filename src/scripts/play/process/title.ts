@@ -1,7 +1,7 @@
 import { ProcessBase } from "~/src/scripts/play/process/processbase"
 
 import { Game } from "~/src/scripts/play/game"
-import { Util } from "~/src/scripts/classes/util"
+import { Random } from "~/src/scripts/classes/random"
 import { Keycode } from "~/src/scripts/configs/keycode"
 import { Count } from "~/src/scripts/classes/basis/count"
 import { Display } from "~/src/scripts/configs/display"
@@ -32,7 +32,7 @@ export class Title extends ProcessBase {
 
         // 定期的に電車を追加して発車させる
         if (this.count.value % 100 == 0) {
-            this.game.backgrounds.add(this.newTrain(1))
+            this.game.backgrounds.add(this.newTrain())
         }
 
         /**
@@ -67,11 +67,12 @@ export class Title extends ProcessBase {
         this.count.counting()
     }
 
-    newTrain(spX: number): Train {
+    newTrain(): Train {
         let x,
             y,
             sp = 0
-        let type = Util.rand(Train.MAX)
+        let isRight: boolean = Random.binary() == 0
+        let type = Random.range(Train.MAX)
         let train = new Train(type, 0, 0)
         let image_width = this.game.image(train.image).width
 
@@ -84,7 +85,7 @@ export class Title extends ProcessBase {
 
         console.log("newTrain type=" + type)
 
-        if (0 < spX) {
+        if (isRight) {
             // 進行方向右
             x = Display.X - image_width
             y = 224
