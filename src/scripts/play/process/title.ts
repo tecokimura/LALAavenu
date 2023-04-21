@@ -9,6 +9,7 @@ import { Display } from "~/src/scripts/configs/display"
 import { Train } from "~/src/scripts/classes/background/train"
 import { Balloon } from "~/src/scripts/classes/background/balloon"
 import { Girl } from "~/src/scripts/classes/background/girl"
+import { Cloud } from "~/src/scripts/classes/background/cloud"
 
 // タイトル画面の処理
 export class Title extends ProcessBase {
@@ -23,6 +24,7 @@ export class Title extends ProcessBase {
 
         this.game.backgrounds.add(this.newBalloon(-30, 160))
         this.game.backgrounds.add(this.newGirl(180, 300))
+        this.game.backgrounds.add(this.newCloud(200, 150))
     }
 
     do() {
@@ -31,7 +33,7 @@ export class Title extends ProcessBase {
         }
 
         // 定期的に電車を追加して発車させる
-        if (this.count.value % 100 == 0) {
+        if (this.count.value % 70 == 0) {
             this.game.backgrounds.add(this.newTrain())
         }
 
@@ -103,7 +105,7 @@ export class Title extends ProcessBase {
         return train
     }
 
-    //
+    // 初期化に画像サイズあればもういらなそう・・・
     newBalloon(x: number, y: number): Balloon {
         let balloon = new Balloon(x, y)
 
@@ -122,5 +124,10 @@ export class Title extends ProcessBase {
         let girl = new Girl(x, y)
 
         return girl
+    }
+
+    // TODO: これいらないかも
+    newCloud(x: number, y: number): Cloud {
+        return new Cloud(x, y)
     }
 }
