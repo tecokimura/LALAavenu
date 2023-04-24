@@ -48,29 +48,37 @@ export class Scene {
     }
 
     // 処理の途中で状態が変わるとif分が複雑になるので処理の開始時点で更新されるように一度bufferに入れupdateSceneで更新する。
-    changeNone() {
+    changeNone(): Scene {
         this.buffer = Scene.NONE
+        return this
     }
-    changeLoading() {
+    changeLoading(): Scene {
         this.buffer = Scene.LOADING
+        return this
     }
-    changeTitle() {
+    changeTitle(): Scene {
         this.buffer = Scene.INIT_TITLE
+        return this
     }
-    startTitle() {
+    startTitle(): Scene {
         this.buffer = Scene.TITLE
+        return this
     }
-    changeOpening() {
+    changeOpening(): Scene {
         this.buffer = Scene.OPENING
+        return this
     }
-    changePlaying() {
+    changePlaying(): Scene {
         this.buffer = Scene.PLAYING
+        return this
     }
-    changeBombed() {
+    changeBombed(): Scene {
         this.buffer = Scene.BOMBED
+        return this
     }
-    changeGameover() {
+    changeGameover(): Scene {
         this.buffer = Scene.GAMEOVER
+        return this
     }
 
     updateScene(): boolean {
