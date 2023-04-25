@@ -1,4 +1,4 @@
-import p5 from "p5"
+import p5, { Color } from "p5"
 import { Display } from "~/src/scripts/configs/display"
 
 export class Graphics {
@@ -48,7 +48,23 @@ export class Graphics {
     }
 
     clearRectBlack() {
-        this.setColor(0, 0, 0)
+        this.clearRect(0, 0, 0)
+    }
+
+    drawRectGradient(startColor: Color, endColor: Color) {
+        // 上端を赤、下端を青にグラデーションするための設定
+        const c1 = this.p5.color(255, 0, 0)
+        const c2 = this.p5.color(0, 0, 255)
+        const gradient = this.p5.drawingContext.createLinearGradient(
+            0,
+            0,
+            0,
+            this.p5.height
+        )
+        gradient.addColorStop(0, c1.toString())
+        gradient.addColorStop(1, c2.toString())
+
+        // 四角形を描画
         this.fillRect(
             Display.X,
             Display.Y,

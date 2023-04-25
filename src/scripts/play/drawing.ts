@@ -1,4 +1,4 @@
-import p5 from "p5"
+import p5, { Color } from "p5"
 import { Game } from "~/src/scripts/play/game"
 import { Count } from "~/src/scripts/classes/basis/count"
 import { Graphics } from "~/src/scripts/classes/graphics"
@@ -79,4 +79,11 @@ export class Drawing {
 
     // No need to write this because working p5
     // repeat() { ... }
+
+    private drawBgGradient() {
+        this.grap.drawRectGradient(
+            this.grap.p5.color(255, 255, 255),
+            this.grap.p5.color(0, 0, 0)
+        )
+    }
 }

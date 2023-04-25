@@ -35,4 +35,9 @@ export abstract class Random {
     public static binary(): number {
         return Random.getRandomIntInclusive(0, 1)
     }
+
+    // 0,1のランダム値をbooleanとして返す
+    public static isZeroBinary(): boolean {
+        return Random.getRandomIntInclusive(0, 1) == 1
+    }
 }

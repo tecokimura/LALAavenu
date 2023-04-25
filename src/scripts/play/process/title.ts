@@ -10,6 +10,7 @@ import { Train } from "~/src/scripts/classes/background/train"
 import { Balloon } from "~/src/scripts/classes/background/balloon"
 import { Girl } from "~/src/scripts/classes/background/girl"
 import { Cloud } from "~/src/scripts/classes/background/cloud"
+import { Plane } from "~/src/scripts/classes/background/plane"
 
 // タイトル画面の処理
 export class Title extends ProcessBase {
@@ -25,6 +26,7 @@ export class Title extends ProcessBase {
         this.game.backgrounds.add(this.newBalloon(-30, 160))
         this.game.backgrounds.add(this.newGirl(180, 300))
         this.game.backgrounds.add(this.newCloud(200, 150))
+        this.game.backgrounds.add(this.newPlane())
     }
 
     do() {
@@ -129,5 +131,38 @@ export class Title extends ProcessBase {
     // TODO: これいらないかも
     newCloud(x: number, y: number): Cloud {
         return new Cloud(x, y)
+    }
+
+    newPlane(): Plane {
+        let x,
+            y,
+            sp = 0
+        let isRight: boolean = Random.binary() == 0
+        let plane = new Plane(0, 0)
+        let image_width = this.game.image(plane.image).width
+
+        plane.setCollision(
+            0,
+            0,
+            image_width,
+            this.game.image(plane.image).height
+        )
+
+        if (isRight) {
+            // 進行方向右
+            x = Display.X - image_width
+            y = 60
+            sp = Plane.SPEED_RIGHT
+        } else {
+            // 進行方向左
+            x = Display.WIDTH
+            y = 62
+            sp = Plane.SPEED_LEFT
+        }
+
+        plane.setPotision(x, y)
+        plane.direction(sp)
+
+        return plane
     }
 }

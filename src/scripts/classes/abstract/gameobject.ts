@@ -15,6 +15,7 @@ export abstract class GameObject extends BasicObject {
     static readonly BACKGROUND_BALLOON: number = 21
     static readonly BACKGROUND_GIRL: number = 22
     static readonly BACKGROUND_CLOUD: number = 23
+    static readonly BACKGROUND_PLANE: number = 24
     static readonly PLAYER: number = 30
     static readonly SHOT: number = 40
     static readonly ENEMY: number = 50
@@ -26,7 +27,8 @@ export abstract class GameObject extends BasicObject {
             this.objKind == GameObject.BACKGROUND_TRAIN ||
             this.objKind == GameObject.BACKGROUND_BALLOON ||
             this.objKind == GameObject.BACKGROUND_GIRL ||
-            this.objKind == GameObject.BACKGROUND_CLOUD
+            this.objKind == GameObject.BACKGROUND_CLOUD ||
+            this.objKind == GameObject.BACKGROUND_PLANE
         )
     }
     public get isBackgroundTrain(): boolean {
@@ -40,6 +42,9 @@ export abstract class GameObject extends BasicObject {
     }
     public get isBackgroundCloud(): boolean {
         return this.objKind == GameObject.BACKGROUND_CLOUD
+    }
+    public get isBackgroundPlane(): boolean {
+        return this.objKind == GameObject.BACKGROUND_PLANE
     }
     public get isPlayer(): boolean {
         return this.objKind == GameObject.PLAYER
