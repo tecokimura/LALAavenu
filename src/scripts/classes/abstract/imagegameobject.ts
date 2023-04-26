@@ -16,4 +16,9 @@ export abstract class ImageGameObject extends GameObject {
     public setAnimations(list: Array<number>) {
         this.animations = list
     }
+
+    // 画像を右向きに基本用意しているので移動速度がマイナスなら反転して描画する
+    public get isDrawFlip(): boolean {
+        return this.spX < 0
+    }
 }

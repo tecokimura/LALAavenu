@@ -148,7 +148,7 @@ export class Title extends ProcessBase {
             this.game.image(plane.image).height
         )
 
-        if (isRight) {
+        if (isRight && false) {
             // 進行方向右
             x = Display.X - image_width
             y = 60

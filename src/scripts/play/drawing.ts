@@ -55,7 +55,12 @@ export class Drawing {
                 )
 
                 this.game.backgrounds.forEach((bg) => {
-                    this.grap.drawImage(this.game.image(bg.image), bg.x, bg.y)
+                    this.grap.drawImage(
+                        this.game.image(bg.image),
+                        bg.x,
+                        bg.y,
+                        bg.isDrawFlip
+                    )
                 })
 
                 this.grap.drawImage(
