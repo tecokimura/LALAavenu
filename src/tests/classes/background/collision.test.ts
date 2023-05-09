@@ -4,7 +4,7 @@ import { Collision } from "~/src/scripts/classes/basis/collision"
 test("object collision", () => {
     const display = new Collision(0, 0, 200, 200)
 
-    const train = new Train(Train.PINK, 0, 0)
+    const train = new Train(Train.Types.PINK, 0, 0)
     train.setCollision(0, 0, 50, 50)
     train.direction(10)
 
@@ -38,7 +38,7 @@ test("Remove the train from the list when it exits the screen.", () => {
     const set = new Set<Train>()
 
     for (let i = 0; i < TRAIN_NUM; i++) {
-        const train = new Train(Train.PINK, i * 20, 0)
+        const train = new Train(Train.Types.PINK, i * 20, 0)
         train.setCollision(0, 0, 50, 50)
         train.direction(20)
 

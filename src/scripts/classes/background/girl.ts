@@ -5,12 +5,10 @@ import { Speed } from "~/src/scripts/classes/basis/speed"
 import { ImgId } from "~/src/scripts/configs/imgid"
 
 export class Girl extends Background.Base {
-    static readonly SPEED_X: number = 0.02
-    static readonly SPEED_Y: number = -0.3
+    static readonly SPEED_X = 0.02
+    static readonly SPEED_Y = -0.3
 
-    get image(): number {
-        return ImgId.ID_BG_BALLOON_GIRL
-    }
+    readonly image = ImgId.ID_BG_BALLOON_GIRL
 
     constructor(x: number, y: number) {
         super()
