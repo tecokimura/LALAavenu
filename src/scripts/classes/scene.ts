@@ -1,4 +1,4 @@
-import { Count } from "~/src/scripts/classes/count"
+import { Count } from "~/src/scripts/classes/basis/count"
 
 export class Scene {
     private readonly time: Count
@@ -14,18 +14,22 @@ export class Scene {
 
     // 正確に連番である必要はない
     static readonly NONE = 0
-    static readonly LOADING = 1
-    static readonly TITLE = 2
-    static readonly OPENING = 3
-    static readonly PLAYING = 4
-    static readonly BOMBED = 5
-    static readonly GAMEOVER = 6
+    static readonly LOADING = 10
+    static readonly INIT_TITLE = 19
+    static readonly TITLE = 20
+    static readonly OPENING = 30
+    static readonly PLAYING = 40
+    static readonly BOMBED = 50
+    static readonly GAMEOVER = 60
 
     isNone(): boolean {
         return this.value == Scene.NONE
     }
     isLoading(): boolean {
         return this.value == Scene.LOADING
+    }
+    isInitTitle(): boolean {
+        return this.value == Scene.INIT_TITLE
     }
     isTitle(): boolean {
         return this.value == Scene.TITLE
@@ -44,43 +48,53 @@ export class Scene {
     }
 
     // 処理の途中で状態が変わるとif分が複雑になるので処理の開始時点で更新されるように一度bufferに入れupdateSceneで更新する。
-    changeNone() {
+    changeNone(): Scene {
         this.buffer = Scene.NONE
+        return this
     }
-    changeLoading() {
+    changeLoading(): Scene {
         this.buffer = Scene.LOADING
+        return this
     }
-    changeTitle() {
+    changeTitle(): Scene {
+        this.buffer = Scene.INIT_TITLE
+        return this
+    }
+    startTitle(): Scene {
         this.buffer = Scene.TITLE
+        return this
     }
-    changeOpening() {
+    changeOpening(): Scene {
         this.buffer = Scene.OPENING
+        return this
     }
-    changePlaying() {
+    changePlaying(): Scene {
         this.buffer = Scene.PLAYING
+        return this
     }
-    changeBombed() {
+    changeBombed(): Scene {
         this.buffer = Scene.BOMBED
+        return this
     }
-    changeGameover() {
+    changeGameover(): Scene {
         this.buffer = Scene.GAMEOVER
+        return this
     }
 
-    updateScene() :boolean {
-
-        if(this.value == this.buffer) {
-            this.time.counting();
-            return false;
+    updateScene(): boolean {
+        if (this.value == this.buffer) {
+            this.time.counting()
+            return false
         }
 
         // scene update
         this.value = this.buffer
         this.time.reset()
         this.time.counting()
-        return true;
+        return true
     }
 
     count(): number {
-        return this.time.count()
+        return this.time.value
     }
 }

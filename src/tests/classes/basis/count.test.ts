@@ -1,16 +1,16 @@
-import { Count } from "~/src/scripts/classes/count"
+import { Count } from "~/src/scripts/classes/basis/count"
 
 test("constructor and get", () => {
     const c = new Count()
-    expect(c.count()).toBe(0)
+    expect(c.value).toBe(0)
 })
 
 test("reset", () => {
     const c = new Count()
     c.reset(10)
-    expect(c.count()).toBe(10)
+    expect(c.value).toBe(10)
     c.reset()
-    expect(c.count()).toBe(0)
+    expect(c.value).toBe(0)
 })
 
 test("counting", () => {
@@ -20,5 +20,5 @@ test("counting", () => {
         c.counting()
     }
 
-    expect(c.count()).toBe(100)
+    expect(c.value).toBe(100)
 })
