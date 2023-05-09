@@ -29,6 +29,7 @@ export class Graphics {
     }
 
     fillRect(x: number, y: number, w: number, h: number) {
+        this.p5.noStroke()
         this.p5.rect(x, y, w * Display.SCALE, h * Display.SCALE)
     }
 
@@ -39,38 +40,11 @@ export class Graphics {
 
     clearRect(r: number = 255, g: number = 255, b: number = 255) {
         this.setColor(r, b, g)
-        this.fillRect(
-            Display.X,
-            Display.Y,
-            Display.WIDTH * Display.SCALE,
-            Display.HEIGHT * Display.SCALE
-        )
+        this.fillRect(Display.X, Display.Y, Display.WIDTH, Display.HEIGHT)
     }
 
     clearRectBlack() {
         this.clearRect(0, 0, 0)
-    }
-
-    drawRectGradient(startColor: Color, endColor: Color) {
-        // 上端を赤、下端を青にグラデーションするための設定
-        const c1 = this.p5.color(255, 0, 0)
-        const c2 = this.p5.color(0, 0, 255)
-        const gradient = this.p5.drawingContext.createLinearGradient(
-            0,
-            0,
-            0,
-            this.p5.height
-        )
-        gradient.addColorStop(0, c1.toString())
-        gradient.addColorStop(1, c2.toString())
-
-        // 四角形を描画
-        this.fillRect(
-            Display.X,
-            Display.Y,
-            Display.WIDTH * Display.SCALE,
-            Display.HEIGHT * Display.SCALE
-        )
     }
 
     drawImage(
@@ -89,5 +63,14 @@ export class Graphics {
 
         this.p5.image(image, -1 * imgWidthHalf, -1 * imgHeightHalf)
         this.p5.pop()
+    }
+
+    // ゲームの背景グラデーションのアナログ描画
+    drawRectGradient(rgbAry: number[][], height: number) {
+        for (let i = 0; i < rgbAry.length; i++) {
+            let rgb = rgbAry[i]
+            this.setColor(rgb[0], rgb[1], rgb[2])
+            this.fillRect(0, height * i, Display.WIDTH, height)
+        }
     }
 }

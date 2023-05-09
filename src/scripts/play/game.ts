@@ -36,7 +36,10 @@ export class Game {
 
     setup(): void {
         // キャンバス作成
-        this.p5.createCanvas(Display.WIDTH, Display.HEIGHT)
+        this.p5.createCanvas(
+            Display.WIDTH * Display.SCALE,
+            Display.HEIGHT * Display.SCALE
+        )
 
         // 画像の読み込み
         this._images.loadAll()

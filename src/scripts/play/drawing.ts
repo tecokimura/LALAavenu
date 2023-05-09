@@ -1,9 +1,10 @@
-import p5, { Color } from "p5"
+import p5 from "p5"
 import { Game } from "~/src/scripts/play/game"
 import { Count } from "~/src/scripts/classes/basis/count"
 import { Graphics } from "~/src/scripts/classes/graphics"
 import { Lock } from "~/src/scripts/classes/basis/lock"
-import { Images } from "../classes/images"
+import { Images } from "~/src/scripts/classes/images"
+import { Display } from "~/src/scripts/configs/display"
 
 // Graphicsを継承してもいいかも
 export class Drawing {
@@ -12,6 +13,32 @@ export class Drawing {
     private readonly grap: Graphics
     private readonly game: Game
     private readonly count: Count
+
+    private readonly BG_RGB_ARRAY: number[][] = [
+        [67, 174, 215],
+        [67, 174, 215],
+        [67, 175, 217],
+        [74, 179, 221],
+        [84, 184, 224],
+
+        [91, 188, 226],
+        [101, 195, 230],
+        [108, 198, 233],
+        [121, 205, 235],
+        [127, 211, 237],
+
+        [138, 216, 240],
+        [150, 221, 243],
+        [160, 226, 245],
+        [169, 229, 246],
+        [176, 229, 245],
+
+        [179, 226, 243],
+        [179, 226, 243],
+        [179, 226, 243],
+        [179, 226, 243],
+        [179, 226, 243],
+    ]
 
     constructor(g: Game, p: p5) {
         this.game = g
@@ -46,7 +73,8 @@ export class Drawing {
                 // タイトル画面初期化中の描画
                 this.grap.clearRectBlack()
             } else if (this.game.scene().isTitle()) {
-                this.grap.clearRect(60, 60, 220)
+                this.grap.clearRect(190, 240, 250)
+                this.grap.drawRectGradient(this.BG_RGB_ARRAY, 11)
 
                 this.grap.drawImage(
                     this.game.image(Images.ID_BG_TOWN_BACK),
@@ -80,15 +108,5 @@ export class Drawing {
 
             this.count.counting()
         }
-    }
-
-    // No need to write this because working p5
-    // repeat() { ... }
-
-    private drawBgGradient() {
-        this.grap.drawRectGradient(
-            this.grap.p5.color(255, 255, 255),
-            this.grap.p5.color(0, 0, 0)
-        )
     }
 }
