@@ -4,7 +4,6 @@ import { Count } from "~/src/scripts/classes/basis/count"
 import { Graphics } from "~/src/scripts/classes/graphics"
 import { Lock } from "~/src/scripts/classes/basis/lock"
 import { Images } from "~/src/scripts/classes/images"
-import { Display } from "~/src/scripts/configs/display"
 
 // Graphicsを継承してもいいかも
 export class Drawing {
