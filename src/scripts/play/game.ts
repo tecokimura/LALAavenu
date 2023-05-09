@@ -5,6 +5,8 @@ import { Scene } from "~/src/scripts/classes/scene"
 import { Keyinput } from "~/src/scripts/classes/keyinput"
 import { Process } from "~/src/scripts/play/process"
 import { Drawing } from "~/src/scripts/play/drawing"
+import { Background } from "~/src/scripts/classes/background/base"
+import { Display } from "../configs/display"
 
 export class Game {
     private p5: p5
@@ -17,6 +19,8 @@ export class Game {
 
     private counter: number = 0
 
+    public backgrounds: Set<Background.Base>
+
     constructor(p: p5) {
         this.p5 = p
 
@@ -26,9 +30,18 @@ export class Game {
         this._scene = new Scene()
         this._keyinput = new Keyinput()
         // 乱数の初期化
+
+        this.backgrounds = new Set<Background.Base>()
     }
 
     setup(): void {
+        // キャンバス作成
+        this.p5.createCanvas(
+            Display.WIDTH * Display.SCALE,
+            Display.HEIGHT * Display.SCALE
+        )
+
+        // 画像の読み込み
         this._images.loadAll()
 
         this.scene().changeLoading()
@@ -38,9 +51,9 @@ export class Game {
     processing() {
         if (this._processing.lock.isUnlocked()) {
             this._drawing.lock.lock()
-            if( this._scene.updateScene() ) {
+            if (this._scene.updateScene()) {
                 // シーンが変わる時のアップデート
-                this._keyinput = new Keyinput();
+                this._keyinput = new Keyinput()
             }
             this._processing.do()
             this._drawing.lock.unlock()

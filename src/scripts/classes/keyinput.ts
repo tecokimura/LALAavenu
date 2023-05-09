@@ -29,7 +29,7 @@ export class Keyinput extends Keycode {
 
     // 指定されたキーが押されてたか、押しっぱなしの時にtrue
     isPressKey(code: number = Keycode.ANY): boolean {
-        return (this.isPressKeyNow(code) || this.isHoldKey(code))
+        return this.isPressKeyNow(code) || this.isHoldKey(code)
     }
 
     // キーが今のフレームで押されたかを調べる
@@ -38,7 +38,7 @@ export class Keyinput extends Keycode {
     isPressKeyNow(code: number = Keycode.ANY): boolean {
         const first = this.keycodeHistory[0]
 
-        if( first == Keycode.NONE) return false;
+        if (first == Keycode.NONE) return false
         if (first == code) return true
 
         const second = this.keycodeHistory[1]
@@ -48,7 +48,7 @@ export class Keyinput extends Keycode {
 
         // 何かキーが押されていることを判定するときは
         // first は既にNONE以外が入っているのでtrue
-        if (code == Keycode.ANY ) return true
+        if (code == Keycode.ANY) return true
 
         return false
     }
